@@ -1,0 +1,2 @@
+# memorization_of_hyakuninnisshu
+百人一首の暗記アプリ
