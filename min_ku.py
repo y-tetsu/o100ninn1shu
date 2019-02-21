@@ -36,13 +36,13 @@ def min_ku(ku_list):
 
 
 if __name__ == "__main__":
-    FIN = open('./hyakuninnissHu.csv', 'r')
-    READER = csv.reader(FIN)
-    HEADER = next(READER)
+    FIN = open('./hyakuninnisshu.csv', 'r')  # ファイルを開く
+    READER = csv.reader(FIN)                 # CSVを読み込む
+    HEADER = next(READER)                    # ヘッダーとして1行読み捨て
 
     KAMI_LIST, SIMO_LIST, SAKU_LIST = [], [], []
 
-    for row in READER:
+    for row in READER:                       # 1行づつ読み出し
         KAMI_LIST += [row[3]]
         SIMO_LIST += [row[4]]
         SAKU_LIST += [row[5]]
