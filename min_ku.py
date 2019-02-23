@@ -15,20 +15,18 @@ def get_min_ku(ku_list):
     ret = []
 
     for index1, ku1 in enumerate(ku_list):
-        pos = 0
-        string = ku1[pos]
-        flag = True
+        ku_tmp = list(ku1)
+        string = ku_tmp.pop(0)
 
-        while flag:
-            flag = False
+        while True:
+            pre_string = string
 
             for index2, ku2 in enumerate(ku_list):
-                if index1 != index2:
-                    if re.match(string, ku2):
-                        pos += 1
-                        string += ku1[pos]
-                        flag = True
-                        break
+                if index1 != index2 and re.match(string, ku2):
+                    string += ku_tmp.pop(0)
+
+            if pre_string == string:
+                break
 
         ret += [string]
 
