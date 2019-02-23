@@ -8,7 +8,7 @@ import csv
 import re
 
 
-def min_ku(ku_list):
+def get_min_ku(ku_list):
     """
     最小文字をチェック
     """
@@ -36,24 +36,19 @@ def min_ku(ku_list):
 
 
 if __name__ == "__main__":
-    FIN = open('./hyakuninnisshu.csv', 'r')  # ファイルを開く
-    READER = csv.reader(FIN)                 # CSVを読み込む
-    HEADER = next(READER)                    # ヘッダーとして1行読み捨て
+    fin = open('./o100ninn1shu.csv', 'r')    # ファイルを開く
+    reader = csv.reader(fin)                 # CSVを読み込む
+    header = next(reader)                    # ヘッダーとして1行読み捨て
 
-    KAMI_LIST, SIMO_LIST, SAKU_LIST = [], [], []
+    kami_ku_list, simo_ku_list, sakusha_list = [], [], []
 
-    for row in READER:                       # 1行づつ読み出し
-        KAMI_LIST += [row[3]]
-        SIMO_LIST += [row[4]]
-        SAKU_LIST += [row[5]]
+    for row in reader:                       # 列データ取得
+        kami_ku_list += [row[3]]
+        simo_ku_list += [row[4]]
+        sakusha_list += [row[5]]
 
-    KAMI_LIST = min_ku(KAMI_LIST)
-    SIMO_LIST = min_ku(SIMO_LIST)
+    kami_ku_list = get_min_ku(kami_ku_list)  # 上の句の最小文字リストを取得
+    simo_ku_list = get_min_ku(simo_ku_list)  # 下の句の最小文字リストを取得
 
-    RET = {}
-
-    for index, kaminoku in enumerate(KAMI_LIST):
-        RET[kaminoku] = SIMO_LIST[index] + "  " * (9 - len(SIMO_LIST[index])) + SAKU_LIST[index]
-
-    for key, value in sorted(RET.items()):
-        print(key + "  " * (7 - len(key)) + value)
+    for i in sorted(zip(kami_ku_list, simo_ku_list, sakusha_list)):
+        print(i[0] + "  " * (7 - len(i[0])) + i[1] + "  " * (9 - len(i[1])) + i[2])
