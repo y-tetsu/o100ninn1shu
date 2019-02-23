@@ -15,15 +15,15 @@ def get_min_list(arr):
     ret = []
 
     for index1, value1 in enumerate(arr):
-        tmp_value = list(value1)
-        string = tmp_value.pop(0)
+        remain = list(value1)
+        string = remain.pop(0)
 
         while True:
             pre_string = string
 
             for index2, value2 in enumerate(arr):
                 if index1 != index2 and re.match(string, value2):
-                    string += tmp_value.pop(0)
+                    string += remain.pop(0)
 
             if pre_string == string:
                 break
