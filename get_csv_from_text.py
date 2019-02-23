@@ -35,8 +35,9 @@ for line in lines:
 
     state += 1
 
+# CSV変換
 with open('./tmp.csv', 'w', encoding='utf-8') as fout:
-    writer = csv.writer(fout, lineterminator='\n') # 改行コード（\n）を指定しておく
+    writer = csv.writer(fout, lineterminator='\n')
     writer.writerow(['番号', '上の句', '下の句', '上の句(かな)', '下の句(かな)', '作者'])
 
     for num, kami, kami_kana, simo, simo_kana, sakusha in ku_list:
