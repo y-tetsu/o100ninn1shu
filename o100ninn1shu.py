@@ -106,7 +106,7 @@ if __name__ == "__main__":
 
         # 解答表示
         if answer == input_answer:
-            print('===== 正解!! =====')
+            print(f'===== 正解!! ({answer}) =====')
         else:
             print(f'----- 残念  (あなたの選択:{input_answer} 正解:{answer}) -----')
         print()
