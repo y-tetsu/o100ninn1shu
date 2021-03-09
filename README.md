@@ -1,5 +1,5 @@
 # o100ninn1shu
-百人一首の暗記アプリ
+コンソールで遊ぶ百人一首の練習アプリ
 
 https://ja.wikipedia.org/wiki/百人一首
 
