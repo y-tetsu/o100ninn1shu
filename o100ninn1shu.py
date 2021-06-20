@@ -55,7 +55,7 @@ def answer_monitor():
 if __name__ == "__main__":
     # 句読み込み
     kami_list, simo_list, kami_kana_list, simo_kana_list, author_list = [], [], [], [], []
-    with open('./o100ninn1shu.csv', 'r', encoding='utf-8') as fin:
+    with open('./csv/o100ninn1shu.csv', 'r', encoding='utf-8') as fin:
         for row in csv.DictReader(fin):
             kami_list += [row['上の句']]
             simo_list += [row['下の句']]

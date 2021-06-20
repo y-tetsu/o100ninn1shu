@@ -20,7 +20,7 @@ $ py -3.7 o100ninn1shu.py
  5. もう一度遊ぶ場合はEnter、やめる場合はqを押して下さい。
 
 ## デモ
-![demo](https://raw.githubusercontent.com/y-tetsu/o100ninn1shu/master/demo2.gif)
+![demo](https://raw.githubusercontent.com/y-tetsu/o100ninn1shu/master/images/demo2.gif)
 
 ## 参考
 https://ja.wikipedia.org/wiki/百人一首
