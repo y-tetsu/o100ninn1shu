@@ -9,6 +9,8 @@ import csv
 import re
 import msvcrt
 
+import win32com.client
+
 
 SELECTIONS_NUM = 5
 input_answer = -1
@@ -52,7 +54,23 @@ def answer_monitor():
                 return
 
 
+def start_speech(sapi, kami):
+    """
+    上の句読み上げ
+    """
+    sapi.Speak(kami_kana)
+
+
+
 if __name__ == "__main__":
+    # Speech API準備
+    sapi = win32com.client.Dispatch("SAPI.SpVoice")
+    cat  = win32com.client.Dispatch("SAPI.SpObjectTokenCategory")
+    cat.SetID(r"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech_OneCore\Voices", False)
+    v = [t for t in cat.EnumerateTokens() if t.GetAttribute("Name") == "Microsoft Ayumi"]
+    sapi.rate = -7
+    oldv = sapi.Voice
+
     # 句読み込み
     kami_list, simo_list, kami_kana_list, simo_kana_list, author_list = [], [], [], [], []
     with open('./csv/o100ninn1shu.csv', 'r', encoding='utf-8') as fin:
@@ -103,6 +121,12 @@ if __name__ == "__main__":
         monitor = threading.Thread(target=answer_monitor)
         monitor.daemon = True
         monitor.start()
+
+        # 読み上げスレッド起動
+        speech = threading.Thread(target=start_speech, args=(sapi, kami_kana))
+        speech.daemon = True
+        speech.start()
+        time.sleep(0.5)
 
         # 上の句読み上げ
         question = ''
